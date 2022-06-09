@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Dec  6 16:26:02 2020
+
+@author: shigematsuyuuki
+"""
+
+import pandas as pd
+from googleapiclient.discovery import build
+
+YOUTUBE_API_KEY='AIzaSyDkk2CIROIS5iDXxXktsDWEY_2JY4k4GUI'
+
+youtube=build('youtube','v3',developerKey=YOUTUBE_API_KEY)
+
+
+search_response=youtube.search().list(
+    part='snippet',
+    q='ボードゲーム',
+    order='viewCount',
+    type='video',
+    ).execute()
+
+print(search_response['items'][0])
+"""
+def  get_video_info(part,q,order,type,num):
+    dic_list=[]
+    search_responce=youtube.search().list(part=part,q=q,order=order,type=type)
+    output=youtube.search().list(part=part,q=q,order=order,type=type).execute()
+    
+    for i in range(num):
+        dic_list=dic_list+output['items']
+        search_responce=youtube.search().list_next(search_responce,output)
+        output=search_responce.execute()
+    
+    df=pd.DataFrame(dic_list)
+    df1=pd.DataFrame(list(df['id']))['videoId']
+    df2=pd.DataFrame(list(df['snippet']))[['channelTitle','publishedAt','channelId','title','description']]
+    ddf=pd.concat([df1,df2],axis=1)
+    
+    return ddf
+print(get_video_info(part='snippet',q='ボードゲーム',order='viewCount',type='video',num=1))
+"""
+"""
+#動画検索からChannelIdの取得------------------------------------------------
+request=youtube.search().list(
+    part='snippet',
+    type='channel',
+    regionCode='JP',
+    q='プログラミング',
+    publishedBefore='2020-03-01T00:00:00Z',
+    publishedAfter='2020-01-01T00:00:00Z',
+    maxResults=5
+    )
+response=request.execute()
+print(response)
+
+channelID=response['items'][0]['snippet']['channelId']
+#print(channelID)
+"""
+"""
+#特定のチャンネルの状況について検索--------------------------------------
+request=youtube.channels().list(
+    part='snippet,contentDetails,statistics',
+    id=channelID
+    )
+response=request.execute()
+#print(response)
+
+#print(response['items'][0]['statistics'])
+#print(response['items'][0]['statistics']['subscriberCount'])
+
+title=response['items'][0]['snippet']['title']
+description=response['items'][0]['snippet']['description']
+#print(title)
+#print(description)
+"""
+#対象のチャンネルの動画を取得-----------------------------------------------
+"""
+request=youtube.search().list(
+    part='snippet',
+    channelId=channelID,
+    order='date',
+    type='video'
+    )
+response=request.execute()
+#print(response)
+url=response['items'][0]['id']['videoId']
+youtube_url='https://youtube.com=watch?v='+url
+print(youtube_url)
+"""
