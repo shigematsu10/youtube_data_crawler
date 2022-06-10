@@ -50,4 +50,4 @@ sh=input('検索したいキーワドを入力:')
 
 result=get_video_info(part='snippet',q=sh,regionCode='JP',num=20)
 
-result.to_csv(f'/Users/shigematsuyuuki/pyauto/{sh}の検索結果.csv',index=False)
+result.to_csv(f'./sample/{sh}の検索結果.csv',index=False)
