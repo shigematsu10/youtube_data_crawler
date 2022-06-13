@@ -20,5 +20,6 @@ if __name__ == '__main__':
 
     video_info_processor = Video(youtube = youtube)
     result = video_info_processor.get_video_info(part='snippet', q=search_word, regionCode='JP', num=20)
-    
+
     result.to_csv(f'./result/result_of_{search_word}.csv', index=False)
+    print('crawling finished.')
