@@ -22,7 +22,7 @@ pip install google-api-python-client
 
 4. Crawling  
 Run the following code, and you will be prompted to enter the keyword.  
+When you enter a keyword, the video information about the keyword is stored in the result.  
 ```
 python crawler.py
 ```
-    When you enter a keyword, the video information about the keyword is stored in the result.  
