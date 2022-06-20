@@ -3,8 +3,8 @@ from src.get_video_information import Video
 
 if __name__ == '__main__':
     # Enter your youtube_api_key
-    YOUTUBE_API_KEY = 'AIzaSyDkk2CIROIS5iDXxXktsDWEY_2JY4k4GUI'
-    
+    YOUTUBE_API_KEY = ''
+
     youtube = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
     search_word = input('Enter Searching key words : ')
 
