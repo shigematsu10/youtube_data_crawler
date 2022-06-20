@@ -6,7 +6,7 @@ We thought that by saving these numerous videos as a list, it could be used for 
 
 ## System Details
 Search for videos for the keyword you want to search for and list them in order of most viewed.  
-The information to be obtained is as follows  
+The information to be obtained is as follows.  
 ・Video title  
 ・Video URL  
 ・Channel name  
